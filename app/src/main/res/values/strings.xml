@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SolWeather</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="today_on_mars">Today On Mars</string>
+    <string name="weather">Weather</string>
+    <string name="Gallery">Gallery</string>
+    <string name="martian_weather">Martian Weather</string>
+    <string name="martian_rover_gallery">Martian Rover Gallery</string>
+    <string name="weather_at_gale_crater">Weather at Gale Crater</string>
+    <string name="gale_crater_mars">Gale Crater, Mars</string>
+</resources>
