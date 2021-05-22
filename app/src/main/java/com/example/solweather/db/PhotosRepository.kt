@@ -1,16 +1,15 @@
 package com.example.solweather.db
 
-import android.util.Log
-import androidx.lifecycle.viewModelScope
+import android.content.Context
 import androidx.paging.*
 import com.example.solweather.MarsService
-import com.example.solweather.api.RetrofitInstance
 import com.example.solweather.rover_images_model.Photo
 import kotlinx.coroutines.flow.Flow
 
 class PhotosRepository(
-        private val service: MarsService,
-        private val database: PhotoDatabase
+    private val service: MarsService,
+    private val database: PhotoDatabase,
+    private val context: Context,
 ) {
 
     /**
@@ -24,7 +23,8 @@ class PhotosRepository(
             config = PagingConfig(pageSize = NETWORK_PAGE_SIZE, enablePlaceholders = false),
             remoteMediator = PhotosRemoteMediator(
                 service,
-                database
+                database,
+                context
             ),
             pagingSourceFactory = pagingSourceFactory
         ).flow

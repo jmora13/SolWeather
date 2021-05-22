@@ -9,9 +9,12 @@ import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.viewpager2.widget.ViewPager2
 import com.example.solweather.R
+import com.example.solweather.adapters.DataFragmentAdapter
 import com.example.solweather.api.RetrofitInstance
 import com.example.solweather.databinding.FragmentHomeBinding
+import kotlinx.android.synthetic.main.fragment_home.*
 import retrofit2.HttpException
 import java.io.IOException
 
@@ -30,10 +33,6 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
-//        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-//            binding. = "Home Fragment"
-//        })
-        //binding.Temperature.text = "ww"
         binding.mars.animation = AnimationUtils.loadAnimation(context, R.anim.float_anim)
         lifecycleScope.launchWhenCreated {
             val response = try {
@@ -60,15 +59,12 @@ class HomeFragment : Fragment() {
                 binding.uvValue.text =  response?.body()?.localUvIrradianceIndex.toString()
             }
         }
-
         return view
     }
 
     private fun convertCelciusToFahrenheit(celsius: Double): Double {
         return celsius * 9 / 5 + 32
     }
-
-
 
 
 }

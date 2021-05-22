@@ -1,5 +1,6 @@
 package com.example.solweather
 
+import com.example.solweather.latestDateForImagesModel.GetLatestDateForImagesModel
 import com.example.solweather.rover_images_model.RoverImagesModel
 import com.example.solweather.weather_data_model.WeatherDataModel
 import retrofit2.Response
@@ -18,6 +19,11 @@ interface MarsService {
             @Query("page") page: Int,
             @Query("api_key") api_key: String
     ): RoverImagesModel
+
+    @GET(".")
+    suspend fun getLatestImages(
+        @Query("api_key") api_key: String
+    ): Response<GetLatestDateForImagesModel>
 
 
 }

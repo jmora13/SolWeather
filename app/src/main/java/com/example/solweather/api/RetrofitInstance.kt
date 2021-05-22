@@ -25,4 +25,13 @@ object RetrofitInstance {
             .build()
             .create(MarsService::class.java)
     }
+
+    val latestImagesApi: MarsService by lazy{
+        Retrofit.Builder()
+                .baseUrl("https://api.nasa.gov/mars-photos/api/v1/manifests/Curiosity/")
+                .callbackExecutor(Executors.newSingleThreadExecutor())
+                .addConverterFactory(JacksonConverterFactory.create())
+                .build()
+                .create(MarsService::class.java)
+    }
 }

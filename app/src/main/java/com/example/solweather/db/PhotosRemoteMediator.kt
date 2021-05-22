@@ -1,38 +1,54 @@
 package com.example.solweather.db
 
+import android.content.Context
+import android.content.SharedPreferences
+import android.preference.PreferenceManager
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.example.solweather.MarsService
-import com.example.solweather.api.RetrofitInstance
+import com.example.solweather.R
+import com.example.solweather.dataStore
 import com.example.solweather.rover_images_model.Photo
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.withContext
 import retrofit2.HttpException
 import java.io.IOException
 import java.io.InvalidObjectException
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.coroutines.coroutineContext
+
 
 private const val INITIAL_INDEX = 1
 
+
+
 @OptIn(ExperimentalPagingApi::class)
 class PhotosRemoteMediator(
-    private val service: MarsService,
-    private val database: PhotoDatabase
+        private val service: MarsService,
+        private val database: PhotoDatabase,
+        private val context: Context
 ) : RemoteMediator<Int, Photo>() {
-    override suspend fun load(
-        // 1
-        loadType: LoadType,
-        // 2
-        state: PagingState<Int, Photo>
-    ): MediatorResult {
 
-        val calendar = Calendar.getInstance()
-        calendar.add(Calendar.DATE, -3)
-        val todayDate: Date = (calendar.time)
-        val formatter = SimpleDateFormat("yyyy-MM-dd")
-        val today: String = formatter.format(todayDate)
+    suspend fun read(key: String): String? {
+        val dataStoreKey = stringPreferencesKey(key)
+        val preferences = context.dataStore.data.first()
+        return preferences[dataStoreKey]
+    }
+
+    override suspend fun load(
+            // 1
+            loadType: LoadType,
+            // 2
+            state: PagingState<Int, Photo>
+    ): MediatorResult {
 
         val page = when (loadType) {
             LoadType.REFRESH -> {
@@ -64,8 +80,8 @@ class PhotosRemoteMediator(
         }
 
         try {
-            // 1
-            val response = service.getRoverImages("2021-4-4", page, "d97Ga6ZdjIX9J8nedU5Ze09TKMhTTD2CxATei6e8")
+            val maxDate = read("maxDate")
+            val response = service.getRoverImages(maxDate ?: "" , page, "d97Ga6ZdjIX9J8nedU5Ze09TKMhTTD2CxATei6e8")
             val photos = response.photos
             val endOfPaginationReached = photos.isEmpty()
             database.withTransaction {
@@ -122,3 +138,4 @@ class PhotosRemoteMediator(
         }
     }
 }
+

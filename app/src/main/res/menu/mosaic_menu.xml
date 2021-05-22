@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/globalMap"
+        android:title="Global Map"
+        app:showAsAction="always" />
+    <item android:id="@+id/curiosity"
+        android:title="Curiosity Landing Site"
+        app:showAsAction="never"/>
+    <item android:id="@+id/martianEast"
+        android:title="Martian East"
+        app:showAsAction="never"/>
+    <item android:id="@+id/MC11"
+        android:title="MC11"
+        app:showAsAction="never"/>
+    <item android:id="@+id/spirit"
+        android:title="Spirit Landing Site"
+        app:showAsAction="never"/>
+    <item android:id="@+id/opportunity"
+        android:title="Opportunity Landing Site"
+        app:showAsAction="never"/>
+    <item android:id="@+id/phoenix"
+        android:title="Phoenix Landing Site"
+        app:showAsAction="never"/>
+    <item android:id="@+id/sojourner"
+        android:title="Sojourner Landing Site"
+        app:showAsAction="never"/>
+    <item android:id="@+id/thermalEmissionSpectrum"
+        android:title="Thermal Emission Spectrometer"
+        app:showAsAction="never"/>
+    <item android:id="@+id/marsOrbiterLaserAltimeter"
+        android:title="Mars Orbiter Laser Altimeter"
+        app:showAsAction="never"/>
+    <item android:id="@+id/marsOrbiterCamera"
+        android:title="Mars Orbiter Camera"
+        app:showAsAction="never"/>
+
+
+
+</menu>
