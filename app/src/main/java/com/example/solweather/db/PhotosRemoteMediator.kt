@@ -81,7 +81,7 @@ class PhotosRemoteMediator(
 
         try {
             val maxDate = read("maxDate")
-            val response = service.getRoverImages(maxDate ?: "" , page, "d97Ga6ZdjIX9J8nedU5Ze09TKMhTTD2CxATei6e8")
+            val response = service.getRoverImages(maxDate ?: "" , page, "API_KEY")
             val photos = response.photos
             val endOfPaginationReached = photos.isEmpty()
             database.withTransaction {

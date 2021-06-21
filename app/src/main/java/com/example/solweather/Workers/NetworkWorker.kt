@@ -41,21 +41,9 @@ class NetworkWorker(appContext: Context, workerParams: WorkerParameters):
     }
 
 
-    private suspend fun getWeather() {
-
-            val response = try {
-                RetrofitInstance.api.getWeatherData()
-            } catch (e: IOException) {
-                Log.d("IOEXCEPTION", e.message.toString())
-            } catch (e: HttpException) {
-                Log.d("HTTPEXCEPTION", e.stackTrace.toString())
-            }
-    }
-
-
     private suspend fun getLatestDateForImagesModel() {
         val response = try {
-            RetrofitInstance.latestImagesApi.getLatestImages("d97Ga6ZdjIX9J8nedU5Ze09TKMhTTD2CxATei6e8").body()?.photoManifest?.maxDate
+            RetrofitInstance.latestImagesApi.getLatestImages("API_KEY").body()?.photoManifest?.maxDate
         } catch (e: IOException) {
             Log.d("IOEXCEPTION", e.message.toString())
         } catch (e: HttpException) {
