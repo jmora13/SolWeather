@@ -12,10 +12,5 @@ class HomeViewModel : ViewModel() {
     }
     val text: LiveData<String> = _text
 
-//    fun getWeatherData() = viewModelScope.launch {
-//       val response = RetrofitInstance.api.getWeatherData()
-//
-//    }
 
-    //private fun handleWeatherResponse(response: Response<WeatherDataModel>):
 }

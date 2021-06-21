@@ -9,8 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.solweather.R
 import com.example.solweather.rover_images_model.Photo
-import com.example.solweather.ui.dashboard.MarsImageAdapter
-import kotlinx.android.synthetic.main.fragment_dashboard.view.*
 import kotlinx.android.synthetic.main.grid_view_item.view.*
 
 class MarsAdapter(): RecyclerView.Adapter<MarsAdapter.PhotoViewHolder>() {

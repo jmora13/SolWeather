@@ -17,6 +17,7 @@ import com.example.solweather.databinding.FragmentHomeBinding
 import kotlinx.android.synthetic.main.fragment_home.*
 import retrofit2.HttpException
 import java.io.IOException
+import kotlin.math.truncate
 
 class HomeFragment : Fragment() {
 
@@ -63,7 +64,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun convertCelciusToFahrenheit(celsius: Double): Double {
-        return celsius * 9 / 5 + 32
+        return truncate(celsius * 9 / 5 + 32)
     }
 
 

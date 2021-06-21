@@ -13,17 +13,11 @@
     <item android:id="@+id/MC11"
         android:title="MC11"
         app:showAsAction="never"/>
-    <item android:id="@+id/spirit"
-        android:title="Spirit Landing Site"
-        app:showAsAction="never"/>
     <item android:id="@+id/opportunity"
         android:title="Opportunity Landing Site"
         app:showAsAction="never"/>
     <item android:id="@+id/phoenix"
         android:title="Phoenix Landing Site"
-        app:showAsAction="never"/>
-    <item android:id="@+id/sojourner"
-        android:title="Sojourner Landing Site"
         app:showAsAction="never"/>
     <item android:id="@+id/thermalEmissionSpectrum"
         android:title="Thermal Emission Spectrometer"

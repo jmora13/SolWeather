@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.notifications.NotificationsFragment"
+    tools:context=".ui.map.MapFragment"
     android:menuCategory="secondary">
 
 
@@ -29,7 +29,6 @@
             android:layout_height="?attr/actionBarSize"
             app:title="Martian Mosaic Maps"
             style="@style/Widget.MaterialComponents.Toolbar.Primary"
-            app:menu="@menu/mosaic_menu"
             />
 
     </com.google.android.material.appbar.AppBarLayout>

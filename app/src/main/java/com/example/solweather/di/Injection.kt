@@ -6,6 +6,7 @@ import com.example.solweather.api.RetrofitInstance
 import com.example.solweather.db.PhotoDatabase
 import com.example.solweather.db.PhotosRepository
 
+//TODO: incorporate Dagger-Hilt
 object Injection {
 
     private fun providePhotosRepository(context: Context): PhotosRepository {

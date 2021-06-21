@@ -34,16 +34,15 @@ class NetworkWorker(appContext: Context, workerParams: WorkerParameters):
 
 
     override suspend fun doWork(): Result {
-        val database: PhotoDatabase = PhotoDatabase.getInstance(applicationContext)
-        val service: MarsService = RetrofitInstance.imagesApi
+
         getLatestDateForImagesModel()
-//        getWeather()
-//        getPhotos(database,service)
+
         return Result.success()
     }
 
 
     private suspend fun getWeather() {
+
             val response = try {
                 RetrofitInstance.api.getWeatherData()
             } catch (e: IOException) {
@@ -53,19 +52,6 @@ class NetworkWorker(appContext: Context, workerParams: WorkerParameters):
             }
     }
 
-//    @OptIn(ExperimentalPagingApi::class)
-//    private fun getPhotos(database: PhotoDatabase, service: MarsService): Flow<PagingData<Photo>> {
-//        val pagingSourceFactory = { database.photosDao().getPhotos() }
-//        return Pager(
-//            config = PagingConfig(pageSize = 25, enablePlaceholders = false),
-//            remoteMediator = PhotosRemoteMediator(
-//                service,
-//                database,
-//                context
-//            ),
-//            pagingSourceFactory = pagingSourceFactory
-//        ).flow
-//    }
 
     private suspend fun getLatestDateForImagesModel() {
         val response = try {
