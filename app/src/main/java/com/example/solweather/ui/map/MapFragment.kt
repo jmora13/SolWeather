@@ -67,7 +67,7 @@ class MapFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     // set up your map here. You will call this method from onCreate()
      fun setupMap() {
-        ArcGISRuntimeEnvironment.setApiKey("AAPK068ea680983c49f0b8e2099cc14c2568nCu382CGZ6ZsJtN72JWG2ZoptwEzdIAa5qIQdCCgB1Nu4Meami-Q-52BtV9pEEx8")
+        ArcGISRuntimeEnvironment.setApiKey("API_KEY")
         // create a map with the BasemapStyle streets
         val map = ArcGISMap()
 
