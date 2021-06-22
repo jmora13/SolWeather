@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.solweather.databinding.FragmentDashboardBinding
+import com.example.solweather.databinding.FragmentGalleryBinding
 import com.example.solweather.db.PhotoDatabase
 import com.example.solweather.di.Injection
 
@@ -26,7 +26,7 @@ class GalleryFragment : Fragment() {
             savedInstanceState: Bundle?
     ): View? {
 
-        val binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        val binding = FragmentGalleryBinding.inflate(inflater, container, false)
 
         galleryViewModel = ViewModelProvider(requireActivity(), Injection.provideViewModelFactory(requireContext()))
             .get(GalleryViewModel::class.java)

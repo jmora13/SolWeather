@@ -12,7 +12,7 @@ import com.esri.arcgisruntime.mapping.Basemap
 import com.esri.arcgisruntime.mapping.view.MapView
 import com.esri.arcgisruntime.ogc.wmts.WmtsService
 import com.example.solweather.R
-import com.example.solweather.databinding.FragmentNotificationsBinding
+import com.example.solweather.databinding.FragmentMapBinding
 import kotlinx.android.synthetic.main.grid_view_item.*
 
 class MapFragment : Fragment(), AdapterView.OnItemSelectedListener {
@@ -21,7 +21,7 @@ class MapFragment : Fragment(), AdapterView.OnItemSelectedListener {
     // objects that implement Loadable must be class fields to prevent being garbage collected before loading
     private var wmtsService: WmtsService = WmtsService("https://api.nasa.gov/mars-wmts/catalog/Mars_Viking_MDIM21_ClrMosaic_global_232m/1.0.0/WMTSCapabilities.xml")
     private val binding by lazy {
-        FragmentNotificationsBinding.inflate(layoutInflater, container, false)
+        FragmentMapBinding.inflate(layoutInflater, container, false)
     }
     private val mapView: MapView by lazy {
         binding.mapView
@@ -35,8 +35,8 @@ class MapFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val view = binding.root
 
         //setHasOptionsMenu(true)
-        ArcGISRuntimeEnvironment.setApiKey("API_KEY")
-        ArcGISRuntimeEnvironment.setLicense("LICENSE_KEY")
+        ArcGISRuntimeEnvironment.setApiKey("AAPK068ea680983c49f0b8e2099cc14c2568nCu382CGZ6ZsJtN72JWG2ZoptwEzdIAa5qIQdCCgB1Nu4Meami-Q-52BtV9pEEx8")
+        ArcGISRuntimeEnvironment.setLicense("runtimelite,1000,rud6732212378,none,TRB3LNBHPBK4J9HSX010")
         // create a map with the BasemapStyle streets
         val map = ArcGISMap()
 
@@ -67,7 +67,7 @@ class MapFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     // set up your map here. You will call this method from onCreate()
      fun setupMap() {
-        ArcGISRuntimeEnvironment.setApiKey("API_KEY")
+        ArcGISRuntimeEnvironment.setApiKey("AAPK068ea680983c49f0b8e2099cc14c2568nCu382CGZ6ZsJtN72JWG2ZoptwEzdIAa5qIQdCCgB1Nu4Meami-Q-52BtV9pEEx8")
         // create a map with the BasemapStyle streets
         val map = ArcGISMap()
 

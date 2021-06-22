@@ -15,11 +15,11 @@
         android:id="@+id/navigation_dashboard"
         android:name="com.example.solweather.ui.gallery.GalleryFragment"
         android:label="@string/martian_rover_gallery"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.solweather.ui.map.MapFragment"
         android:label="Mosaic Map"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_map" />
 </navigation>

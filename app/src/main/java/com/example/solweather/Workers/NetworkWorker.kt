@@ -43,7 +43,7 @@ class NetworkWorker(appContext: Context, workerParams: WorkerParameters):
 
     private suspend fun getLatestDateForImagesModel() {
         val response = try {
-            RetrofitInstance.latestImagesApi.getLatestImages("API_KEY").body()?.photoManifest?.maxDate
+            RetrofitInstance.latestImagesApi.getLatestImages("api_key").body()?.photoManifest?.maxDate
         } catch (e: IOException) {
             Log.d("IOEXCEPTION", e.message.toString())
         } catch (e: HttpException) {

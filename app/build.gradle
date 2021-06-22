@@ -16,8 +16,8 @@ android {
         applicationId "com.solweather"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 11
-        versionName "1.91"
+        versionCode 12
+        versionName "1.92"
         ndk.abiFilters 'armeabi-v7a','arm64-v8a'
         ndk {abiFilters 'armeabi-v7a','arm64-v8a' }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
