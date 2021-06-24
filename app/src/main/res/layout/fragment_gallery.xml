@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
+    android:theme="@style/Theme.SolWeather"
     android:menuCategory="secondary">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -22,6 +23,12 @@
             />
 
     </com.google.android.material.appbar.AppBarLayout>
+    <ProgressBar
+        android:id="@+id/spinner"
+        android:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/photos_grid"

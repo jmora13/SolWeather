@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.solweather.api.RetrofitInstance
 import com.example.solweather.databinding.FragmentGalleryBinding
 import com.example.solweather.db.PhotoDatabase
 import com.example.solweather.di.Injection
@@ -38,19 +39,20 @@ class GalleryFragment : Fragment() {
                 header = ImagesLoadStateAdapter { marsAdapter.retry() },
                 footer = ImagesLoadStateAdapter { marsAdapter.retry() }
         )
-        getImages()
+        lifecycleScope.launch {
+            try{
+                RetrofitInstance.latestImagesApi.getLatestImages("d97Ga6ZdjIX9J8nedU5Ze09TKMhTTD2CxATei6e8")
+                    .body()?.photoManifest?.maxDate
+            } finally {
+                galleryViewModel.data.collectLatest {
+                    binding.spinner.visibility = View.GONE
+                    marsAdapter.submitData(it)
+                }
+            }
+        }
         setHasOptionsMenu(true)
         return binding.root
     }
 
-
-
-    private fun getImages(){
-        lifecycleScope.launch{
-            galleryViewModel.data.collectLatest {
-                marsAdapter.submitData(it)
-            }
-        }
-    }
 
 }
