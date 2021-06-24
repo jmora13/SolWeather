@@ -45,6 +45,7 @@ class HomeFragment : Fragment() {
                 Log.d("HTTPEXCEPTION", e.stackTrace.toString())
                 return@launchWhenCreated
             }
+            binding.spinner.visibility = View.GONE
             val maxTempF = response.body()?.maxTemp?.let { convertCelciusToFahrenheit(it.toDouble()) }
             val minTempF = response.body()?.minTemp?.let { convertCelciusToFahrenheit(it.toDouble()) }
             val maxGtsTempF = response.body()?.maxGtsTemp?.let { convertCelciusToFahrenheit(it.toDouble()) }

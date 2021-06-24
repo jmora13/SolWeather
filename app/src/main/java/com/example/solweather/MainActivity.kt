@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_gallery -> viewPager?.setCurrentItem(1, false)
                 R.id.navigation_map -> viewPager?.setCurrentItem(2, false)
             }
-            false
+            true
         }
         viewPager?.offscreenPageLimit = 2
         viewPager?.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
@@ -47,10 +47,8 @@ class MainActivity : AppCompatActivity() {
                                         positionOffsetPixels: Int) {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
                 when (position) {
-                    0 -> navView?.menu?.findItem(R.id.navigation_home)?.isChecked =
-                            true
+                    0 -> navView?.menu?.findItem(R.id.navigation_home)?.isChecked = true
                     1 -> navView?.menu?.findItem(R.id.navigation_dashboard)?.isChecked = true
-
                     2 -> navView?.menu?.findItem(R.id.navigation_notifications)?.isChecked = true
                 }
             }
