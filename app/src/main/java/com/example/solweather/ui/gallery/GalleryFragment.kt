@@ -41,7 +41,7 @@ class GalleryFragment : Fragment() {
         )
         lifecycleScope.launch {
             try{
-                RetrofitInstance.latestImagesApi.getLatestImages("d97Ga6ZdjIX9J8nedU5Ze09TKMhTTD2CxATei6e8")
+                RetrofitInstance.latestImagesApi.getLatestImages("api_key")
                     .body()?.photoManifest?.maxDate
             } finally {
                 galleryViewModel.data.collectLatest {
