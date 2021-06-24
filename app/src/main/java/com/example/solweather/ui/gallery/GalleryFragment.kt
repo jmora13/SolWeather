@@ -2,11 +2,14 @@ package com.example.solweather.ui.gallery
 
 import android.os.Bundle
 import android.view.*
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.solweather.api.RetrofitInstance
+import com.example.solweather.dataStore
 import com.example.solweather.databinding.FragmentGalleryBinding
 import com.example.solweather.db.PhotoDatabase
 import com.example.solweather.di.Injection
@@ -41,8 +44,9 @@ class GalleryFragment : Fragment() {
         )
         lifecycleScope.launch {
             try{
-                RetrofitInstance.latestImagesApi.getLatestImages("d97Ga6ZdjIX9J8nedU5Ze09TKMhTTD2CxATei6e8")
+                val response = RetrofitInstance.latestImagesApi.getLatestImages("api_key")
                     .body()?.photoManifest?.maxDate
+                save("maxDate", response.toString())
             } finally {
                 galleryViewModel.data.collectLatest {
                     binding.spinner.visibility = View.GONE
@@ -54,5 +58,12 @@ class GalleryFragment : Fragment() {
         return binding.root
     }
 
+
+    suspend fun save(key: String, value: String) {
+        val dataStoreKey = stringPreferencesKey(key)
+        context?.dataStore?.edit { settings ->
+            settings[dataStoreKey] = value
+        }
+    }
 
 }
