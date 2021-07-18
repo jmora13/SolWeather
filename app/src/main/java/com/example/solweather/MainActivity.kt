@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
 
+
             }
 
             override fun onPageScrollStateChanged(state: Int) {
@@ -48,8 +49,8 @@ class MainActivity : AppCompatActivity() {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
                 when (position) {
                     0 -> navView?.menu?.findItem(R.id.navigation_home)?.isChecked = true
-                    1 -> navView?.menu?.findItem(R.id.navigation_dashboard)?.isChecked = true
-                    2 -> navView?.menu?.findItem(R.id.navigation_notifications)?.isChecked = true
+                    1 -> navView?.menu?.findItem(R.id.navigation_gallery)?.isChecked = true
+                    2 -> navView?.menu?.findItem(R.id.navigation_map)?.isChecked = true
                 }
             }
         })

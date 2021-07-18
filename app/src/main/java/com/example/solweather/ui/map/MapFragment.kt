@@ -11,13 +11,15 @@ import com.esri.arcgisruntime.mapping.ArcGISMap
 import com.esri.arcgisruntime.mapping.Basemap
 import com.esri.arcgisruntime.mapping.view.MapView
 import com.esri.arcgisruntime.ogc.wmts.WmtsService
+import com.example.solweather.BuildConfig
 import com.example.solweather.R
 import com.example.solweather.databinding.FragmentMapBinding
 import kotlinx.android.synthetic.main.grid_view_item.*
 
 class MapFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
-    private lateinit var mapViewModel: MapViewModel
+    private val API_KEY_MAP = BuildConfig.API_KEY_MAP
+    private val LICENSE_KEY_MAP = BuildConfig.LICENSE_KEY_MAP
     // objects that implement Loadable must be class fields to prevent being garbage collected before loading
     private var wmtsService: WmtsService = WmtsService("https://api.nasa.gov/mars-wmts/catalog/Mars_Viking_MDIM21_ClrMosaic_global_232m/1.0.0/WMTSCapabilities.xml")
     private val binding by lazy {
@@ -35,8 +37,8 @@ class MapFragment : Fragment(), AdapterView.OnItemSelectedListener {
         val view = binding.root
 
         //setHasOptionsMenu(true)
-        ArcGISRuntimeEnvironment.setApiKey("api_key")
-        ArcGISRuntimeEnvironment.setLicense("api_key")
+        ArcGISRuntimeEnvironment.setApiKey(API_KEY_MAP)
+        ArcGISRuntimeEnvironment.setLicense(LICENSE_KEY_MAP)
         // create a map with the BasemapStyle streets
         val map = ArcGISMap()
 
@@ -67,7 +69,7 @@ class MapFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     // set up your map here. You will call this method from onCreate()
      fun setupMap() {
-        ArcGISRuntimeEnvironment.setApiKey("api_key")
+        ArcGISRuntimeEnvironment.setApiKey(API_KEY_MAP)
         // create a map with the BasemapStyle streets
         val map = ArcGISMap()
 

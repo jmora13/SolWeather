@@ -1,16 +1,19 @@
 package com.example.solweather.ui.home
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.solweather.api.RetrofitInstance
+import com.example.solweather.weather_data_model.WeatherDataModel
+import retrofit2.HttpException
+import java.io.IOException
 
 class HomeViewModel : ViewModel() {
 
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    suspend fun getWeatherResponse(): WeatherDataModel?{
+        return RetrofitInstance.api.getWeatherData().body()
     }
-    val text: LiveData<String> = _text
 
 
 }

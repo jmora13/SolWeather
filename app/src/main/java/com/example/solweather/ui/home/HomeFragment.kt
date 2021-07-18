@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
         binding.mars.animation = AnimationUtils.loadAnimation(context, R.anim.float_anim)
         lifecycleScope.launchWhenCreated {
             val response = try {
-                RetrofitInstance.api.getWeatherData()
+                homeViewModel.getWeatherResponse()
             } catch (e: IOException) {
                 Log.d("IOEXCEPTION", e.message.toString())
                 return@launchWhenCreated
@@ -46,19 +46,19 @@ class HomeFragment : Fragment() {
                 return@launchWhenCreated
             }
             binding.spinner.visibility = View.GONE
-            val maxTempF = response.body()?.maxTemp?.let { convertCelciusToFahrenheit(it.toDouble()) }
-            val minTempF = response.body()?.minTemp?.let { convertCelciusToFahrenheit(it.toDouble()) }
-            val maxGtsTempF = response.body()?.maxGtsTemp?.let { convertCelciusToFahrenheit(it.toDouble()) }
-            val minGtsTempF = response.body()?.minGtsTemp?.let { convertCelciusToFahrenheit(it.toDouble()) }
-            if(response.isSuccessful && response != null){
+            val maxTempF = response?.maxTemp?.let { convertCelciusToFahrenheit(it.toDouble()) }
+            val minTempF = response?.minTemp?.let { convertCelciusToFahrenheit(it.toDouble()) }
+            val maxGtsTempF = response?.maxGtsTemp?.let { convertCelciusToFahrenheit(it.toDouble()) }
+            val minGtsTempF = response?.minGtsTemp?.let { convertCelciusToFahrenheit(it.toDouble()) }
+            if(response != null){
                 binding.maxTemp.text = String.format("%.1f",maxTempF) + "°F"
                 binding.minTemp.text = String.format("%.1f",minTempF)  + "°F"
-                binding.weather.text = response?.body()?.atmoOpacity
-                binding.seasonValue.text = response?.body()?.season
-                binding.pressureValue.text = response?.body()?.pressure.toString() + " Mb"
+                binding.weather.text = response?.atmoOpacity
+                binding.seasonValue.text = response?.season
+                binding.pressureValue.text = response?.pressure.toString() + " Mb"
                 binding.groundTempValue.text = (maxGtsTempF.toString() + "°/" + minGtsTempF.toString()!! + "°")
-                binding.sunriseSunsetValue.text = (response?.body()?.sunrise.toString() + "/" + response?.body()?.sunset.toString()!!)
-                binding.uvValue.text =  response?.body()?.localUvIrradianceIndex.toString()
+                binding.sunriseSunsetValue.text = (response?.sunrise.toString() + "/" + response?.sunset.toString()!!)
+                binding.uvValue.text =  response?.localUvIrradianceIndex.toString()
             }
         }
         return view

@@ -1,7 +1,9 @@
 package com.example.solweather.ui.gallery
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.fragment.app.Fragment
@@ -13,7 +15,6 @@ import com.example.solweather.dataStore
 import com.example.solweather.databinding.FragmentGalleryBinding
 import com.example.solweather.db.PhotoDatabase
 import com.example.solweather.di.Injection
-
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -22,7 +23,6 @@ class GalleryFragment : Fragment() {
 
     private lateinit var galleryViewModel: GalleryViewModel
     private val marsAdapter = MarsImageAdapter()
-    private val database = PhotoDatabase
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -44,8 +44,7 @@ class GalleryFragment : Fragment() {
         )
         lifecycleScope.launch {
             try{
-                val response = RetrofitInstance.latestImagesApi.getLatestImages("api_key")
-                    .body()?.photoManifest?.maxDate
+                val response = galleryViewModel.getMaxDate()
                 save("maxDate", response.toString())
             } finally {
                 galleryViewModel.data.collectLatest {
@@ -57,6 +56,7 @@ class GalleryFragment : Fragment() {
         setHasOptionsMenu(true)
         return binding.root
     }
+
 
 
     suspend fun save(key: String, value: String) {

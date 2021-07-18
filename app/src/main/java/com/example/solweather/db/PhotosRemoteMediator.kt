@@ -11,6 +11,7 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
+import com.example.solweather.BuildConfig
 import com.example.solweather.MarsService
 import com.example.solweather.R
 import com.example.solweather.dataStore
@@ -27,7 +28,7 @@ import kotlin.coroutines.coroutineContext
 
 
 private const val INITIAL_INDEX = 1
-
+private val API_KEY_GALLERY = BuildConfig.API_KEY_GALLERY
 
 
 @OptIn(ExperimentalPagingApi::class)
@@ -36,6 +37,7 @@ class PhotosRemoteMediator(
         private val database: PhotoDatabase,
         private val context: Context
 ) : RemoteMediator<Int, Photo>() {
+
 
     suspend fun read(key: String): String? {
         val dataStoreKey = stringPreferencesKey(key)
@@ -81,7 +83,7 @@ class PhotosRemoteMediator(
 
         try {
             val maxDate = read("maxDate")
-            val response = service.getRoverImages(maxDate ?: "" , page, "api_key")
+            val response = service.getRoverImages(maxDate ?: "" , page, API_KEY_GALLERY)
             val photos = response.photos
             val endOfPaginationReached = photos.isEmpty()
             database.withTransaction {
